@@ -1,0 +1,266 @@
+/* Modern CSS with Advanced Effects */
+:root {
+  /* Light Theme Variables */
+  --primary-light: #2196f3;
+  --secondary-light: #f50057;
+  --background-light: #f5f7fa;
+  --surface-light: #ffffff;
+  --text-light: #2c3e50;
+  
+  /* Dark Theme Variables */
+  --primary-dark: #64b5f6;
+  --secondary-dark: #ff4081;
+  --background-dark: #1a1a1a;
+  --surface-dark: #2d2d2d;
+  --text-dark: #ecf0f1;
+  
+  /* Glassmorphism */
+  --glass-background: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  
+  /* Neumorphism */
+  --neumorph-light: #ffffff;
+  --neumorph-dark: rgba(0, 0, 0, 0.1);
+  
+  /* Animations */
+  --transition-speed: 0.21s;
+  --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Reduced Animation Scales */
+  --hover-scale: 1.014;
+  --hover-scale-large: 1.028;
+  --hover-translate-y: -3px;
+}
+
+/* Custom Cursor */
+body {
+  cursor: none;
+  overflow-x: hidden;
+}
+
+.cursor-dot,
+.cursor-outline {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 9999;
+  transition: transform 0.07s;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-light);
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--primary-light);
+  transition: all 0.14s ease-out;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--glass-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+  transition: transform var(--transition-speed) var(--transition-function);
+}
+
+.glass-card:hover {
+  transform: translateY(var(--hover-translate-y)) scale(var(--hover-scale));
+}
+
+/* Neumorphic Elements */
+.neumorph-button {
+  background: var(--surface-light);
+  box-shadow: 
+    8px 8px 16px var(--neumorph-dark),
+    -8px -8px 16px var(--neumorph-light);
+  border-radius: 12px;
+  transition: all var(--transition-speed) var(--transition-function);
+}
+
+.neumorph-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Gradient Buttons */
+.gradient-button {
+  background: linear-gradient(45deg, var(--primary-light), var(--secondary-light));
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-speed) var(--transition-function);
+}
+
+.gradient-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.gradient-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-button:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+}
+
+/* 3D Cards */
+.card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card-3d:hover {
+  transform: rotateX(7deg) rotateY(7deg);
+}
+
+.card-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, var(--primary-light), var(--secondary-light)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  border-radius: 16px;
+}
+
+/* Scroll Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: all 0.42s var(--transition-function);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax Container */
+.parallax-container {
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.parallax-element {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform var(--transition-speed) var(--transition-function);
+}
+
+/* Grid Layout */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 24px;
+}
+
+/* Dark Mode Transitions */
+.theme-transition {
+  transition: background-color var(--transition-speed),
+              color var(--transition-speed),
+              border-color var(--transition-speed);
+}
+
+/* Animated Backgrounds */
+.animated-gradient {
+  background: linear-gradient(
+    270deg,
+    var(--primary-light),
+    var(--secondary-light),
+    var(--primary-dark),
+    var(--secondary-dark)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 10.5s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Scroll Snap Carousel */
+.snap-carousel {
+  scroll-snap-type: x mandatory;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.snap-carousel > * {
+  scroll-snap-align: start;
+  flex: 0 0 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-outline {
+    display: none;
+  }
+  
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Utility Classes */
+.blur-bg { backdrop-filter: blur(10px); }
+.glass { background: var(--glass-background); }
+.neumorph { box-shadow: var(--neumorph-shadow); }
+.gradient-text {
+  background: linear-gradient(45deg, var(--primary-light), var(--secondary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+} 
